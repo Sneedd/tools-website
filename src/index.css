@@ -1,0 +1,34 @@
+
+h4 {
+  border-bottom: 1px solid #ccc;
+}
+
+.tools-nav {
+  margin: 1rem 0rem;
+  padding: 1rem;
+  border-right: 1px solid #ccc;  
+}
+
+.tools-nav .tools-nav-entry {
+  margin: 0.5rem;
+}
+
+.tools-nav .tools-nav-subentry {
+
+}
+
+.tools-nav a {
+  text-decoration: none;
+  color: black;
+}
+.tools-nav a .active {
+  text-decoration: none;
+  color: blue;
+}
+
+
+
+
+.tools-uuids-result {
+  font-family: monospace;
+}
