@@ -4,10 +4,160 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
     <title>Tools - steffenott.net</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="app-shell">
+      <nav class="tools-nav" id="nav-container"></nav>
+      <main class="tools-content" id="page-container"></main>
+    </div>
+
+    <template id="tpl-nav-entry">
+      <div class="tools-nav-entry">
+        <a data-role="nav-link">
+          <i data-role="nav-icon"></i>
+          <span data-role="nav-label"></span>
+        </a>
+        <div data-role="nav-children"></div>
+      </div>
+    </template>
+
+    <template id="tpl-nav-subentry">
+      <div class="tools-nav-subentry">
+        <a data-role="nav-link">
+          <i data-role="nav-icon"></i>
+          <span data-role="nav-label"></span>
+        </a>
+      </div>
+    </template>
+
+    <template id="tpl-page-home">
+      <h1>Tools</h1>
+      <p>A collection of small, no-nonsense utilities.</p>
+
+      <h4>Hash Functions</h4>
+      <ul>
+        <li><a href="/hash/md5">MD5</a></li>
+        <li><a href="/hash/sha1">SHA-1</a></li>
+        <li><a href="/hash/sha224">SHA-224</a></li>
+        <li><a href="/hash/sha256">SHA-256</a></li>
+        <li><a href="/hash/sha384">SHA-384</a></li>
+        <li><a href="/hash/sha512">SHA-512</a></li>
+        <li><a href="/hash/sha3">SHA-3</a></li>
+      </ul>
+
+      <h4>Password</h4>
+      <ul>
+        <li><a href="/password/pronounceable">Pronounceable</a></li>
+      </ul>
+
+      <h4>Unique Values</h4>
+      <ul>
+        <li><a href="/unique/random">Random</a></li>
+        <li><a href="/unique/uuid/v1">UUID v1</a></li>
+        <li><a href="/unique/uuid/v4">UUID v4</a></li>
+        <li><a href="/unique/uuid/analyse">UUID Analyser</a></li>
+      </ul>
+    </template>
+
+    <template id="tpl-page-hash-single">
+      <h2 data-role="title"></h2>
+
+      <div class="mb-3">
+        <label class="form-label">Text</label>
+        <input type="text" class="form-control" data-role="input-text"
+          placeholder="Enter any text to calculate the hash ..." />
+      </div>
+
+      <br />
+      <hr />
+
+      <div class="mb-3">
+        <label class="form-label">Hexadecimal</label>
+        <input type="text" class="form-control" data-role="out-hex" readonly />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Base64</label>
+        <input type="text" class="form-control" data-role="out-b64" readonly />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Base64-URL</label>
+        <input type="text" class="form-control" data-role="out-b64url" readonly />
+      </div>
+    </template>
+
+    <template id="tpl-page-password-pronounceable">
+      <h2>Pronounceable Password</h2>
+      <p>Coming soon.</p>
+    </template>
+
+    <template id="tpl-page-unique-random">
+      <h2>Random value functions</h2>
+
+      <div class="mb-3">
+        <label class="form-label">Size: <span data-role="size-value"></span> bytes</label>
+        <input type="range" class="form-range" data-role="range-size" min="1" max="64" value="16" />
+      </div>
+
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="random-format" id="random-format-hex"
+            data-role="radio-hex" checked>
+          <label class="form-check-label" for="random-format-hex">Hexadecimal</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="random-format" id="random-format-base64"
+            data-role="radio-base64">
+          <label class="form-check-label" for="random-format-base64">Base64</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="random-format" id="random-format-base64url"
+            data-role="radio-base64url">
+          <label class="form-check-label" for="random-format-base64url">Base64-URL</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-light" data-role="btn-append">Append</button>
+        </div>
+        <button type="button" class="btn btn-danger" data-role="btn-clear">Clear</button>
+      </div>
+
+      <textarea class="form-control tools-uuids-result" data-role="result" rows="12" readonly></textarea>
+    </template>
+
+    <template id="tpl-page-unique-uuid-create">
+      <h2 data-role="title"></h2>
+
+      <div class="mb-3">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-light" data-role="btn-create">Create</button>
+        </div>
+        <button type="button" class="btn btn-danger" data-role="btn-clear">Clear</button>
+      </div>
+
+      <textarea class="form-control tools-uuids-result" data-role="result" rows="12" readonly></textarea>
+    </template>
+
+    <template id="tpl-page-unique-uuid-analyse">
+      <h2>UUID Analyser</h2>
+
+      <div class="mb-3">
+        <label class="form-label">UUID</label>
+        <input type="text" class="form-control" data-role="input-validate"
+          placeholder="Enter UUID to return its properties ..." />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Result</label>
+        <textarea class="form-control tools-uuids-result" data-role="out-validate" rows="2" readonly></textarea>
+      </div>
+    </template>
+
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

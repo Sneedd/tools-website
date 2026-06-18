@@ -1,10 +1,10 @@
-import { ReactNode } from "react"
+import { PageFactory } from "../../pages/Page";
 
 export interface MenuItem {
-  
+
   displayName: string;
-  icon: ReactNode;
+  icon: string;
   path: string;
-  element: ReactNode;
-  children?: MenuItem[];  
+  page: PageFactory;
+  children?: MenuItem[];
 };
