@@ -59,6 +59,14 @@
         <li><a href="/unique/uuid/v4">UUID v4</a></li>
         <li><a href="/unique/uuid/analyse">UUID Analyser</a></li>
       </ul>
+
+      <h4>Encoding</h4>
+      <ul>
+        <li><a href="/encoding/base64/encode">Base64 Encode</a></li>
+        <li><a href="/encoding/base64/decode">Base64 Decode</a></li>
+        <li><a href="/encoding/url/encode">URL Encode</a></li>
+        <li><a href="/encoding/url/decode">URL Decode</a></li>
+      </ul>
     </template>
 
     <template id="tpl-page-hash-single">
@@ -91,7 +99,44 @@
 
     <template id="tpl-page-password-pronounceable">
       <h2>Pronounceable Password</h2>
-      <p>Coming soon.</p>
+
+      <div class="mb-3">
+        <label class="form-label">Length: <span data-role="length-value"></span> characters</label>
+        <input type="range" class="form-range" data-role="range-length" min="4" max="64" value="12" />
+      </div>
+
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="password-include-numbers" data-role="checkbox-numbers"
+            checked>
+          <label class="form-check-label" for="password-include-numbers">Numbers</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="password-include-normal-special"
+            data-role="checkbox-normal-special" checked>
+          <label class="form-check-label" for="password-include-normal-special">Normal special characters (= - + #
+            _ . *)</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="password-include-special" data-role="checkbox-special">
+          <label class="form-check-label" for="password-include-special">Special characters ($ % &amp; § / = ?
+            "
+            !)</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="password-include-extra-special"
+            data-role="checkbox-extra-special">
+          <label class="form-check-label" for="password-include-extra-special">Extra special characters (; , : .
+            &lt; &gt; | @ ' ~ \ {} [] ())</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <button type="button" class="btn btn-light" data-role="btn-create">Create</button>
+        <button type="button" class="btn btn-danger" data-role="btn-clear">Clear</button>
+      </div>
+
+      <textarea class="form-control tools-uuids-result" data-role="result" rows="12" readonly></textarea>
     </template>
 
     <template id="tpl-page-unique-random">
@@ -155,6 +200,107 @@
       <div class="mb-3">
         <label class="form-label">Result</label>
         <textarea class="form-control tools-uuids-result" data-role="out-validate" rows="2" readonly></textarea>
+      </div>
+    </template>
+
+    <template id="tpl-page-encoding-base64-encode">
+      <h2>Base64 Encode</h2>
+
+      <div class="mb-3">
+        <label class="form-label">Input</label>
+        <textarea class="form-control tools-uuids-result" data-role="input" rows="12"
+          placeholder="Enter text to encode ..."></textarea>
+      </div>
+
+      <div class="mb-3 d-flex align-items-center gap-3">
+        <button type="button" class="btn btn-light" data-role="btn-encode">Encode</button>
+
+        <div class="d-flex gap-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="base64-encode-variant" id="base64-encode-standard"
+              data-role="radio-standard" checked>
+            <label class="form-check-label" for="base64-encode-standard">Base64</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="base64-encode-variant" id="base64-encode-url"
+              data-role="radio-url">
+            <label class="form-check-label" for="base64-encode-url">Base64-URL</label>
+          </div>
+        </div>
+
+        <select class="form-select w-auto" data-role="select-charset">
+          <option value="utf-8" selected>UTF-8</option>
+          <option value="windows-1252">Windows-1252</option>
+          <option value="iso-8859-1">ISO-8859-1 (Latin-1)</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Output</label>
+        <textarea class="form-control tools-uuids-result" data-role="output" rows="12" readonly></textarea>
+      </div>
+    </template>
+
+    <template id="tpl-page-encoding-base64-decode">
+      <h2>Base64 Decode</h2>
+
+      <div class="mb-3">
+        <label class="form-label">Input</label>
+        <textarea class="form-control tools-uuids-result" data-role="input" rows="12"
+          placeholder="Enter Base64 or Base64-URL encoded text ..."></textarea>
+      </div>
+
+      <div class="mb-3 d-flex align-items-center gap-3">
+        <button type="button" class="btn btn-light" data-role="btn-decode">Decode</button>
+
+        <select class="form-select w-auto" data-role="select-charset">
+          <option value="utf-8" selected>UTF-8</option>
+          <option value="windows-1252">Windows-1252</option>
+          <option value="iso-8859-1">ISO-8859-1 (Latin-1)</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Output</label>
+        <textarea class="form-control tools-uuids-result" data-role="output" rows="12" readonly></textarea>
+      </div>
+    </template>
+
+    <template id="tpl-page-encoding-url-encode">
+      <h2>URL Encode</h2>
+
+      <div class="mb-3">
+        <label class="form-label">Input</label>
+        <textarea class="form-control tools-uuids-result" data-role="input" rows="12"
+          placeholder="Enter text to URL-encode ..."></textarea>
+      </div>
+
+      <div class="mb-3">
+        <button type="button" class="btn btn-light" data-role="btn-encode">Encode</button>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Output</label>
+        <textarea class="form-control tools-uuids-result" data-role="output" rows="12" readonly></textarea>
+      </div>
+    </template>
+
+    <template id="tpl-page-encoding-url-decode">
+      <h2>URL Decode</h2>
+
+      <div class="mb-3">
+        <label class="form-label">Input</label>
+        <textarea class="form-control tools-uuids-result" data-role="input" rows="12"
+          placeholder="Enter URL-encoded text to decode ..."></textarea>
+      </div>
+
+      <div class="mb-3">
+        <button type="button" class="btn btn-light" data-role="btn-decode">Decode</button>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Output</label>
+        <textarea class="form-control tools-uuids-result" data-role="output" rows="12" readonly></textarea>
       </div>
     </template>
 

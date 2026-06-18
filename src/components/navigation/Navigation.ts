@@ -22,7 +22,7 @@ export class Navigation {
     const label = document.createElement("span");
     label.textContent = "Tools";
     const version = document.createElement("code");
-    version.textContent = "1.0.0";
+    version.textContent = "1.1.0";
     footerContent.append(label, version);
     footer.appendChild(footerContent);
 

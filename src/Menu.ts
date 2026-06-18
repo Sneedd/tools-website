@@ -12,6 +12,10 @@ import { createPasswordPronounceablePage } from "./pages/PasswordPronounceablePa
 import { createUniqueRandomPage } from "./pages/UniqueRandomPage";
 import { createUuidV1Page, createUuidV4Page } from "./pages/UniqueUuidCreatePage";
 import { createUuidAnalysePage } from "./pages/UniqueUuidAnalysePage";
+import { createBase64EncodePage } from "./pages/Base64EncodePage";
+import { createBase64DecodePage } from "./pages/Base64DecodePage";
+import { createUrlEncodePage } from "./pages/UrlEncodePage";
+import { createUrlDecodePage } from "./pages/UrlDecodePage";
 import { MenuItem } from "./components/menu/MenuItem";
 
 
@@ -118,6 +122,39 @@ export const Menu: MenuItem[] = [
         icon: "bi-search",
         path: "/unique/uuid/analyse",
         page: createUuidAnalysePage
+      },
+    ]
+  },
+
+  {
+    displayName: "Encoding",
+    icon: "bi-code-slash",
+    path: "/encoding",
+    page: createBase64EncodePage,
+    children: [
+      {
+        displayName: "Base64 Encode",
+        icon: "bi-arrow-right-square",
+        path: "/encoding/base64/encode",
+        page: createBase64EncodePage
+      },
+      {
+        displayName: "Base64 Decode",
+        icon: "bi-arrow-left-square",
+        path: "/encoding/base64/decode",
+        page: createBase64DecodePage
+      },
+      {
+        displayName: "URL Encode",
+        icon: "bi-link-45deg",
+        path: "/encoding/url/encode",
+        page: createUrlEncodePage
+      },
+      {
+        displayName: "URL Decode",
+        icon: "bi-link",
+        path: "/encoding/url/decode",
+        page: createUrlDecodePage
       },
     ]
   },
