@@ -16,6 +16,8 @@ import { createBase64EncodePage } from "./pages/Base64EncodePage";
 import { createBase64DecodePage } from "./pages/Base64DecodePage";
 import { createUrlEncodePage } from "./pages/UrlEncodePage";
 import { createUrlDecodePage } from "./pages/UrlDecodePage";
+import { createJwtAnalysePage } from "./pages/JwtAnalysePage";
+import { createJwkGeneratePage } from "./pages/JwkGeneratePage";
 import { MenuItem } from "./components/menu/MenuItem";
 
 
@@ -74,6 +76,27 @@ export const Menu: MenuItem[] = [
         icon: "bi-hash",
         path: "/hash/sha3",
         page: createSha3Page
+      },
+    ]
+  },
+
+  {
+    displayName: "Json Web Tokens",
+    icon: "bi-shield-lock",
+    path: "/jwt",
+    page: createJwtAnalysePage,
+    children: [
+      {
+        displayName: "JWT Analyser",
+        icon: "bi-search",
+        path: "/jwt/analyse",
+        page: createJwtAnalysePage
+      },
+      {
+        displayName: "JWK Generator",
+        icon: "bi-key",
+        path: "/jwt/jwk/generate",
+        page: createJwkGeneratePage
       },
     ]
   },

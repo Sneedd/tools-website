@@ -95,6 +95,38 @@ h4 {
   font-family: monospace;
 }
 
+.tools-jwt-layout {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tools-jwt-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tools-jwt-box {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: visible;
+}
+
+.tools-jwt-box-header {
+  min-height: 5.25rem;
+}
+
+.tools-jwt-box-payload {
+  min-height: 11.25rem;
+}
+
+.tools-jwt-box-line {
+  min-height: 2.25rem;
+}
+
 .form-control,
 .form-select {
   background-color: #262c37;
@@ -114,7 +146,8 @@ h4 {
 }
 
 input[readonly],
-textarea[readonly] {
+textarea[readonly],
+.tools-jwt-box {
   background-color: #1a1f27;
   color: #aeb6c2;
 }

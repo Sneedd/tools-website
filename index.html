@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
-    <title>Developing Tools</title>
+    <title>Developer Tools</title>
   </head>
   <body>
     <div class="app-shell">
@@ -33,8 +33,8 @@
     </template>
 
     <template id="tpl-page-home">
-      <h1>Tools</h1>
-      <p>A collection of small, no-nonsense utilities.</p>
+      <h1>Developer Tools</h1>
+      <p>Tools every developer needs, without the typical nonsense.</p>
 
       <h4>Hash Functions</h4>
       <ul>
@@ -45,6 +45,12 @@
         <li><a href="/hash/sha384">SHA-384</a></li>
         <li><a href="/hash/sha512">SHA-512</a></li>
         <li><a href="/hash/sha3">SHA-3</a></li>
+      </ul>
+
+      <h4>Json Web Tokens</h4>
+      <ul>
+        <li><a href="/jwt/analyse">JWT Analyser</a></li>
+        <li><a href="/jwt/jwk/generate">JWK Generator</a></li>
       </ul>
 
       <h4>Password</h4>
@@ -301,6 +307,96 @@
       <div class="mb-3">
         <label class="form-label">Output</label>
         <textarea class="form-control tools-uuids-result" data-role="output" rows="12" readonly></textarea>
+      </div>
+    </template>
+
+    <template id="tpl-page-jwt-analyse">
+      <h2>JWT Analyser</h2>
+
+      <div class="tools-jwt-layout">
+        <div class="tools-jwt-col">
+          <div class="mb-3">
+            <label class="form-label">JWT</label>
+            <textarea class="form-control tools-uuids-result" data-role="input-token" rows="16"
+              placeholder="Paste a JWT (header.payload.signature) ..."></textarea>
+          </div>
+        </div>
+
+        <div class="tools-jwt-col">
+          <div class="mb-3">
+            <label class="form-label">Header</label>
+            <pre class="form-control tools-uuids-result tools-jwt-box tools-jwt-box-header" data-role="out-header"></pre>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Payload</label>
+            <pre class="form-control tools-uuids-result tools-jwt-box tools-jwt-box-payload" data-role="out-payload"></pre>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Signature</label>
+            <pre class="form-control tools-uuids-result tools-jwt-box tools-jwt-box-line" data-role="out-signature"></pre>
+
+            <div class="mt-2 d-flex align-items-center gap-3">
+              <button type="button" class="btn btn-light" data-role="btn-verify">Verify Signature</button>
+              <a data-role="link-discovery" target="_blank" hidden></a>
+              <a data-role="link-jwks" target="_blank" hidden></a>
+            </div>
+
+            <pre class="form-control tools-uuids-result tools-jwt-box tools-jwt-box-line mt-2"
+              data-role="out-verify-status"></pre>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-page-jwk-generate">
+      <h2>JWK Generator</h2>
+
+      <div class="mb-3 d-flex gap-3">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="jwk-alg" id="jwk-alg-rsa" data-role="radio-rsa" checked>
+          <label class="form-check-label" for="jwk-alg-rsa">RSA</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="jwk-alg" id="jwk-alg-ecdsa" data-role="radio-ecdsa">
+          <label class="form-check-label" for="jwk-alg-ecdsa">ECDSA</label>
+        </div>
+      </div>
+
+      <div class="mb-3" data-role="wrap-rsa-size">
+        <label class="form-label">Modulus Length</label>
+        <select class="form-select w-auto" data-role="select-modulus">
+          <option value="2048" selected>2048</option>
+          <option value="3072">3072</option>
+          <option value="4096">4096</option>
+        </select>
+      </div>
+
+      <div class="mb-3" data-role="wrap-ecdsa-curve" hidden>
+        <label class="form-label">Named Curve</label>
+        <select class="form-select w-auto" data-role="select-curve">
+          <option value="P-256" selected>P-256</option>
+          <option value="P-384">P-384</option>
+          <option value="P-521">P-521</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <button type="button" class="btn btn-light" data-role="btn-generate">Generate</button>
+        <button type="button" class="btn btn-danger" data-role="btn-clear">Clear</button>
+      </div>
+
+      <div class="tools-jwt-layout">
+        <div class="tools-jwt-col">
+          <label class="form-label">Private Key (JWK)</label>
+          <pre class="form-control tools-uuids-result tools-jwt-box tools-jwt-box-payload" data-role="out-private"></pre>
+        </div>
+
+        <div class="tools-jwt-col">
+          <label class="form-label">Public Key (JWK)</label>
+          <pre class="form-control tools-uuids-result tools-jwt-box tools-jwt-box-payload" data-role="out-public"></pre>
+        </div>
       </div>
     </template>
 

@@ -10,6 +10,8 @@ function flatten(menu: MenuItem[]): MenuItem[] {
   return [...menu, ...menu.flatMap(m => m.children ?? [])];
 }
 
+document.title = `Developing Tools - ${location.hostname}`;
+
 const pageContainer = document.getElementById('page-container') as HTMLElement;
 const navContainer = document.getElementById('nav-container') as HTMLElement;
 
