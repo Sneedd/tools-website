@@ -1,5 +1,6 @@
 import { Router } from "../../router/Router";
 import { MenuItem } from "../menu/MenuItem";
+import { version as appVersion } from "../../../package.json";
 
 export class Navigation {
 
@@ -22,7 +23,7 @@ export class Navigation {
     const label = document.createElement("span");
     label.textContent = "Tools";
     const version = document.createElement("code");
-    version.textContent = "1.1.0";
+    version.textContent = appVersion;
     footerContent.append(label, version);
     footer.appendChild(footerContent);
 
